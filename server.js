@@ -1,6 +1,7 @@
 const express = require("express");
 const helmet = require("helmet");
 const cors = require("cors");
+const morgan = require("morgan");
 const session = require("express-session");
 
 const userRouter = require("./routers/user-router.js");
@@ -23,6 +24,7 @@ server.use(session(sessionConfig));
 server.use(express.json());
 server.use(helmet());
 server.use(cors());
+server.use(morgan());
 server.use("/api/users/", userRouter);
 
 module.exports = server;
