@@ -51,4 +51,21 @@ router.get("/", protected, (req, res) => {
       res.status(500).json(err);
     });
 });
+router.get("/logout", (req, res) => {
+  if (req.session) {
+    req.session.destroy(err => {
+      if (err) {
+        res.status(500).json({
+          message: "you can check out"
+        });
+      } else {
+        res.status(200).json({
+          message: "bye, thanks for visiting"
+        });
+      }
+    });
+  } else {
+    res.status(200).json({ message: "bye, thanks for visiting" });
+  }
+});
 module.exports = router;
